@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>🔍 Mark Classroom Attendance</h1>
+    
+    {% if message %}
+    <div class="success">{{ message }}</div>
+    {% endif %}
+    
+    <form action="/detect" method="post" enctype="multipart/form-data" class="upload-form">
+        <label>Classroom Photo: 
+            <input type="file" name="classroom_photo" accept="image/*" required>
+        </label>
+        <button type="submit">🚀 Process Attendance</button>
+    </form>
+    
+    {% if results %}
+    <div class="results">
+        <h3>✅ Results</h3>
+        <p><strong>{{ results.total_faces_detected }} faces detected</strong></p>
+        {% for student in results.attendance %}
+        <div class="attendance-item">
+            {{ student.name }} ({{ student.roll_no }}) - {{ student.confidence }}
+        </div>
+        {% endfor %}
+        <a href="/download" class="download-btn">📥 Download CSV</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
