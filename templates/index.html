@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>🎓 Class Attendance System</h1>
+    <p>Demo your face recognition attendance system!</p>
+    
+    <div class="cards">
+        <a href="/enroll" class="card enroll">
+            <h3>📝 Enroll Student</h3>
+            <p>Add student with 3 face photos</p>
+        </a>
+        <a href="/detect" class="card detect">
+            <h3>🔍 Mark Attendance</h3>
+            <p>Upload classroom photo → auto-detect</p>
+        </a>
+    </div>
+    
+    <h3>📊 Latest Attendance</h3>
+    {% for record in latest_attendance %}
+    <div class="attendance-item">{{ record.name }} ({{ record.roll_no }}) - {{ record.time }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

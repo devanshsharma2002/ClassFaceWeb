@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>📝 Enroll New Student</h1>
+    
+    {% if message %}
+    <div class="success">{{ message }}</div>
+    {% endif %}
+    
+    <form action="/enroll" method="post" enctype="multipart/form-data" class="upload-form">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" name="roll_no" placeholder="Roll Number" required>
+        
+        <label>Photo 1: <input type="file" name="photo1" accept="image/*" required></label>
+        <label>Photo 2: <input type="file" name="photo2" accept="image/*" required></label>
+        <label>Photo 3: <input type="file" name="photo3" accept="image/*" required></label>
+        
+        <button type="submit">✅ Enroll Student</button>
+    </form>
+</div>
+{% endblock %}
