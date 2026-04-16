@@ -15,9 +15,17 @@
         </a>
     </div>
     
-    <h3>📊 Latest Attendance</h3>
-    {% for record in latest_attendance %}
-    <div class="attendance-item">{{ record.name }} ({{ record.roll_no }}) - {{ record.time }}</div>
-    {% endfor %}
+    <!-- Add to index.html after cards -->
+    <h3>Latest Attendance</h3>
+    <div id="attendance-list">
+        {% if latest_attendance %}
+            {% for record in latest_attendance %}
+            <div>{{ record.name }} - {{ record.time }}</div>
+            {% endfor %}
+        {% else %}
+            <p>No attendance yet. Enroll students first!</p>
+        {% endif %}
+    </div>
+    <a href="/download" class="download-btn">📥 Download CSV</a>
 </div>
 {% endblock %}
